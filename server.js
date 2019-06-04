@@ -2,6 +2,14 @@ const { ApolloServer } = require("apollo-server");
 
 const typeDefs = require("./typeDef");
 const resolvers = require("./resolvers");
+const mongoose = require("mongoose");
+require('dotenv').config();
+
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
+    .then(() => {
+        console.log('Database Connection Established')
+    })
+    .catch(err => console.error(err));
 
 const server = new ApolloServer({
     typeDefs,
