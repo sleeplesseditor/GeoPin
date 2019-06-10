@@ -27,22 +27,24 @@ const Header = ({ classes }) => {
                         </Typography>
                     </div>
                     {currentUser && (
-                        <div className={classes.grow}>
-                            <img 
-                                className={classes.picture}
-                                src={currentUser.picture}
-                                alt={currentUser.name}
-                            />
-                            <Typography
-                                variant="h6"
-                                color="inherit"
-                                noWrap
-                            >
-                                {currentUser.name}
-                            </Typography>
-                        </div>
+                        <React.Fragment>
+                            <div className={classes.grow}>
+                                <img 
+                                    className={classes.picture}
+                                    src={currentUser.picture}
+                                    alt={currentUser.name}
+                                />
+                                <Typography
+                                    variant="h6"
+                                    color="inherit"
+                                    noWrap
+                                >
+                                    {currentUser.name}
+                                </Typography>
+                            </div>
+                            <Signout />
+                        </React.Fragment>    
                     )}
-                    <Signout />
                 </Toolbar>
             </AppBar>
         </div>
