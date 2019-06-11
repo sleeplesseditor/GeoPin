@@ -8,6 +8,8 @@ import LandscapeIcon from "@material-ui/icons/LandscapeOutlined";
 import ClearIcon from "@material-ui/icons/Clear";
 import SaveIcon from "@material-ui/icons/SaveTwoTone";
 import Context from '../../context';
+import axios from 'axios';
+import { cloudName } from '../config';
 
 const CreatePin = ({ classes }) => {
     const { dispatch } = useContext(Context);
@@ -22,9 +24,22 @@ const CreatePin = ({ classes }) => {
         dispatch({ type: 'DELETE_DRAFT' });
     }
 
-    const handleSubmit = event => {
-        event.prventDefault();
-        console.log({ title, image , content });
+    const handleImageUpload = async() => {
+        const data = new FormData();
+        data.append('file', image);
+        data.append('upload_preset', 'geopin');
+        data.append('cloud_name', cloudName);
+        const res = await axios.post(
+            `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+            data
+        )
+        return res.data.url
+    }
+
+    const handleSubmit = async event => {
+        event.preventDefault();
+        const url = await handleImageUpload();
+        console.log({ title, image, url, content });
     }
 
     return (
