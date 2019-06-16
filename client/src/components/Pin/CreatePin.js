@@ -26,7 +26,7 @@ const CreatePin = ({ classes }) => {
         setImage('')
         setContent('')
         dispatch({ type: 'DELETE_DRAFT' });
-    }
+    };
 
     const handleImageUpload = async() => {
         const data = new FormData();
@@ -37,17 +37,17 @@ const CreatePin = ({ classes }) => {
             `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
             data
         )
-        return res.data.url
-    }
+        return res.data.url;
+    };
 
     const handleSubmit = async event => {
         try {
             event.preventDefault();
             setSubmitting(true);
             const url = await handleImageUpload();
-            const { latitude, longitude } = state
+            const { latitude, longitude } = state.draft;
             const variables = { title, image: url, content, latitude, longitude };
-            const { createPin } = await client.request(CREATE_PIN_MUTATION, variables)
+            const { createPin } = await client.request(CREATE_PIN_MUTATION, variables);
             console.log('Pin Created', { createPin });
             dispatch({ 
                 type: "CREATE_PIN", 
