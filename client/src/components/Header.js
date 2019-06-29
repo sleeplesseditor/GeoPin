@@ -53,7 +53,9 @@ const Header = ({ classes }) => {
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    width: "100%",
+    zIndex: "99"
   },
   grow: {
     flexGrow: 1,

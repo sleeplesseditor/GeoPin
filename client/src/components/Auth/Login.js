@@ -4,6 +4,7 @@ import { GoogleLogin } from 'react-google-login';
 import { withStyles } from "@material-ui/core/styles";
 import { oAuthClientId } from '../config';
 import Typography from "@material-ui/core/Typography";
+import Background from '../../media/background3.jpg';
 import Context from '../../context';
 import { ME_QUERY } from '../../graphql/queries';
 import { BASE_URL } from "../../client";
@@ -31,34 +32,60 @@ const Login = ({ classes }) => {
 
   return (
     <div className={classes.root}>
-        <Typography
-            component="h1"
-            variant="h3"
-            gutterBottom
-            noWrap
-            style={{ color: "rgb(66, 133, 244)" }}
-        >
-            Welcome
-        </Typography>
-        <GoogleLogin 
-            clientId={oAuthClientId} 
-            onSuccess={onSuccess}
-            onFailure={onFailure}
-            isSignedIn={true}
-            buttonText="Login with Google"
-            theme="dark"
-        />
+        <div className={classes.loginBox}>
+            <div className={classes.loginHeading}>    
+                <Typography
+                    component="h1"
+                    variant="h3"
+                    gutterBottom
+                    noWrap
+                    style={{ color: "rgb(255,255,255)" }}
+                >
+                    Welcome
+                </Typography>
+                <GoogleLogin 
+                    clientId={oAuthClientId} 
+                    onSuccess={onSuccess}
+                    onFailure={onFailure}
+                    isSignedIn={true}
+                    buttonText="Login with Google"
+                    theme="dark"
+                />
+                <Typography
+                    component="h3"
+                    variant="h5"
+                    style={{ 
+                        color: "rgb(255,255,255)",
+                        margin: "25px",
+                        textAlign: "center"
+                    }}
+                >
+                    Share Photos About Your Favourite Local Spots
+                </Typography>
+            </div>
+        </div>
     </div>
   );
 };
 
 const styles = {
   root: {
+    backgroundImage: `url(${Background})`,
+    backgroundSize: "cover"
+  },
+  loginBox: {
+    background: 'linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.7))',
     height: "100vh",
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+  },
+  loginHeading: {
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    alignItems: "center",
   }
 };
 
