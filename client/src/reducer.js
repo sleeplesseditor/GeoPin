@@ -4,18 +4,18 @@ export default function reducer(state, action) {
             return {
                 ...state,
                 currentUser: action.payload
-            }
+            };
         case "IS_LOGGED_IN":
             return {
                 ...state,
                 isAuth: action.payload
-            }
+            };
         case "SIGN_OUT_USER":
             return {
                 ...state,
                 isAuth: false,
                 currentUser: null
-            }
+            };
         case "CREATE_DRAFT":
             return {
                 ...state,
@@ -24,22 +24,22 @@ export default function reducer(state, action) {
                     latitude: 0,
                     longitude: 0
                 }
-            }
+            };
         case "UPDATE_DRAFT_LOCATION":
             return {
                 ...state,
                 draft: action.payload
-            }
+            };
         case "DELETE_DRAFT":
             return {
                 ...state,
                 draft: null
-            }
+            };
         case "GET_PINS":
             return {
                 ...state,
                 pins: action.payload
-            }
+            };
         case "CREATE_PIN":
             const newPin = action.payload;
             const prevPins = state.pins.filter(pin => pin._id !== newPin._id);
@@ -52,15 +52,24 @@ export default function reducer(state, action) {
                 ...state,
                 currentPin: action.payload,
                 draft: null
-            }
+            };
         case "DELETE_PIN":
-            const deletedPin = action.payload
-            const filteredPins = state.pins.filter(pin => pin._id !== deletedPin._id)
+            const deletedPin = action.payload;
+            const filteredPins = state.pins.filter(pin => pin._id !== deletedPin._id);
+            if(state.currentPin) {
+                const isCurrentPin = deletedPin._id === state.currentPin._id;
+                if(isCurrentPin){
+                    return {
+                        ...state,
+                        pins: filteredPins,
+                        currentPin: null
+                    }
+                }
+            }
             return {
                 ...state,
-                pins: filteredPins,
-                currentPin: null
-            }
+                pins: filteredPins
+            };
         case "CREATE_COMMENT":
             const updatedCurrentPin = action.payload
             const updatedPins = state.pins.map(pin => 
@@ -70,7 +79,7 @@ export default function reducer(state, action) {
                 ...state,
                 pins: updatedPins,
                 currentPin: updatedCurrentPin
-            }
+            };
         default:
             return state;
     }

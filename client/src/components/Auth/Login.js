@@ -60,7 +60,7 @@ const Login = ({ classes }) => {
                         textAlign: "center"
                     }}
                 >
-                    Share Photos About Your Favourite Local Spots
+                    Share Photos and Chat About Your Favourite Local Spots
                 </Typography>
             </div>
         </div>
