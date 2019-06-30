@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { GraphQLClient } from 'graphql-request';
 
 export const BASE_URL = 
