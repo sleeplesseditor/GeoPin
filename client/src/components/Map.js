@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ReactMapGL, { NavigationControl, Marker, Popup } from 'react-map-gl';
 import { withStyles } from '@material-ui/core/styles';
-import { mapBoxApiId } from './config';
+import { mapBoxApiId } from './apiConnections';
 import differenceInMinutes from 'date-fns/difference_in_minutes';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';

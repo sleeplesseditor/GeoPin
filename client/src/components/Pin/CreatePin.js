@@ -12,7 +12,7 @@ import Context from '../../context';
 import { useClient } from '../../client';
 import { CREATE_PIN_MUTATION } from '../../graphql/mutations';
 import axios from 'axios';
-import { cloudName } from '../config';
+import { cloudName } from '../apiConnections';
 
 const CreatePin = ({ classes }) => {
     const mobileSize = useMediaQuery('(max-width: 650px)');

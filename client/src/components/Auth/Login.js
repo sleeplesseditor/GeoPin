@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { GraphQLClient } from 'graphql-request';
 import { GoogleLogin } from 'react-google-login';
 import { withStyles } from "@material-ui/core/styles";
-import { oAuthClientId } from '../config';
+import { oAuthClientId } from '../apiConnections';
 import Typography from "@material-ui/core/Typography";
 import Background from '../../media/background3.jpg';
 import Context from '../../context';
